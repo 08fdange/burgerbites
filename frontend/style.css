@@ -29,9 +29,10 @@ input[type=submit] {
 }
 
 ul {
-    list-style-image: url('media/hamburger2.png');
+    list-style-image: url('media/hamburger-solid.svg');
     margin-left: 25px;
-  }
+}
+
 
 .rating-dropdown-button {
     padding: 5px;

@@ -111,7 +111,12 @@ function displayPlaces(){
                     rating = new Rating(stars, currentUser);
                     postRating(rating);
                 })
-            } else {
+            }
+            else if(!currentUser) {
+                alert("Must be logged in to rate!");
+            }
+            
+            else {
                 let form = document.getElementsByClassName('rating-form')[0];
                 form.parentNode.removeChild(form);
             }
@@ -244,8 +249,6 @@ registrationDropdownButton.addEventListener('click', function(event) {
             let email = document.getElementById('registration-form').getElementsByTagName('input')[0].value;
             let password = document.getElementById('registration-form').getElementsByTagName('input')[1].value;
             registerUser(email,password);
-            getUsers();
-            loginUser(email,password)
             
         })
     }
