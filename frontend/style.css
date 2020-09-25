@@ -1,0 +1,95 @@
+header {
+    box-sizing: border-box;
+    margin-left: 30px;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.places-container {
+    border-left-width: 200px;
+    background-color: white;
+}
+
+input[type=text]{
+    padding: 10px;
+    border: 2px solid #eee;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+    width: 60%;
+  }
+
+input[type=submit] {
+    padding: 10px;
+    border: 2px solid #eee;
+    box-shadow:0 0 10px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+    border-width: 5px;
+}
+
+ul {
+    list-style-image: url('media/hamburger2.png');
+    margin-left: 25px;
+  }
+
+.rating-dropdown-button {
+    padding: 5px;
+    /* height: 7px;
+    text-align: center;
+    margin: auto; */
+    border-radius: 10px;
+}
+
+.place-div {
+    /* background-color: #D3D3D3; */
+    padding: 10px;
+    /* box-shadow: 5px 5px 5px 2px black;
+    border-radius: 10px; */
+
+}
+
+.place-li-item {
+    border-bottom:1px solid black;
+}
+
+.place-image {
+    max-width:100%;
+    height:auto;
+}
+
+.phone-number {
+    text-size-adjust: 50;
+}
+
+.place-url {
+    text-size-adjust: 50;
+}
+
+.stars-outer {
+    position: relative;
+    display: inline-block;
+}
+
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: 0;
+    width: 0;
+}
+
+.stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #ccc;
+}
+
+.stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #f8ce0b;
+}
