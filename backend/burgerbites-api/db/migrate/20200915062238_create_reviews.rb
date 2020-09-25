@@ -2,8 +2,8 @@ class CreateReviews < ActiveRecord::Migration[6.0]
   def change
     create_table :reviews do |t|
       t.string :content
+      t.string :place
       t.references :user, null: false, foreign_key: true
-      t.references :place, null: false, foreign_key: true
 
       t.timestamps
     end
