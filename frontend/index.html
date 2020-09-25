@@ -3,17 +3,37 @@
   <head>
     <meta charset="utf-8">
     <title>BurgerBites</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
   </head>
   <body>
     <header>
-      <h2>Burger Bites</h2>
+      <h1>Burger Bites</h1>
+      <div id= "user-form-div">
+        <div id='logout-div'></div>
+        <button id='registration-dropdown-button'>Register</button>
+        <button id='login-dropdown-button'>Log In</button>
+        <br>
+        <container id='user-form-container'></container>
+      </div>
+
+      <form id="location-form">
+        <input type='text' name='location' placeholder='Location(Zip Code or Address)'>
+        <input type='submit' value="Search">
+      </form>
+      
     </header>
 
     <main>
+
     
     </main>
-
+    <script src="src/user.js"></script>
+    <script src="src/place.js"></script>
+    <script src="src/fetch.js"></script>
+    <script src="src/rating.js"></script>
     <script src="./src/index.js"></script>
   </body>
 </html>
