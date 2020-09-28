@@ -1,5 +1,6 @@
 let allUsers = [];
 let currentUser;
+let previousUser = false;
 
 class User {
     constructor(id, email) {

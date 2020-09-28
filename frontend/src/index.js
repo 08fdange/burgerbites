@@ -24,9 +24,16 @@ function getPlacesByQuery() {
             let place = new Place(name, latitude, longitude, phone, url, img)
             allPlaces.push(place)
         })
+        getRatings();
         displayPlaces();
+
     })
 }
+
+// function displayRatings() {
+//     currentRatings = allRatings.filter(rating => rating.user === currentUser.id)
+//     return currentRatings;
+// }
 
 function displayPlaces(){
     //create main places container and ul
@@ -43,6 +50,8 @@ function displayPlaces(){
         div.className = 'place-div';
         const formDiv = document.createElement('div');
         formDiv.className = 'rating-form-div';
+        formDiv.dataset.place = obj.name;
+        // formDiv.id = obj.name;
         const img = document.createElement('img');
         img.src = obj.img;
         img.className = 'place-image';
@@ -59,6 +68,8 @@ function displayPlaces(){
         a2.href = obj.url;
         a2.innerText = 'URL';
         a2.innerHTML += '<br>';
+        starsDiv = document.createElement('div');
+        starsDiv.id = obj.name;
         const starsOuter = document.createElement('div');
         starsOuter.className = 'stars-outer';
         const starsInner = document.createElement('div');
@@ -69,8 +80,9 @@ function displayPlaces(){
 
         //append elements
         div.appendChild(h1);
-        div.appendChild(starsOuter);
-        // starsOuter.appendChild(starsInner);
+        div.appendChild(starsDiv);
+        starsDiv.appendChild(starsOuter);
+        starsOuter.appendChild(starsInner);
         div.appendChild(formDiv);
         formDiv.appendChild(ratingButton);
         div.innerHTML += '<br>';
@@ -80,6 +92,7 @@ function displayPlaces(){
         li.appendChild(div);
         ul.appendChild(li);
         container.appendChild(ul);
+
         
     })
 
@@ -108,8 +121,11 @@ function displayPlaces(){
                 form.addEventListener('submit', function(event) {
                     event.preventDefault();
                     let stars = event.target.elements[0].value;
-                    rating = new Rating(stars, currentUser);
-                    postRating(rating);
+                    let place = event.target.parentNode.dataset.place;
+                    postRating(stars, place);
+                    let div = document.getElementById(`${place}`)
+                    let starsDisplay = div.childNodes[0].childNodes[0];
+                    starsDisplay.style.width = `${(stars * 20)}%`;
                 })
             }
             else if(!currentUser) {
@@ -217,6 +233,10 @@ function logoutButton() {
         regisButton.style.display = 'block';
         loginButton.style.display = 'block';
         currentUser = null;
+        let allStars = document.querySelectorAll('.stars-inner')
+        allStars.forEach(function(stars){
+            stars.style.width = 0;
+        })
     })
 
 }
@@ -281,5 +301,10 @@ loginDropdownButton.addEventListener('click', function() {
 
 locationForm.addEventListener('submit', function(event) {
     event.preventDefault();
+    allPlaces = [];
+    if (document.getElementsByClassName('places-container')[0]) {
+        let placesContainer = document.getElementsByClassName('places-container')[0];
+        placesContainer.parentNode.removeChild(placesContainer);
+    }
     getPlacesByQuery();
 })

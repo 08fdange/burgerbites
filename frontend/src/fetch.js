@@ -16,11 +16,25 @@ function getRatings() {
     return fetch(baseURL + 'ratings')
     .then(resp => resp.json())
     .then(ratings => {
-        console.log(ratings);
+        ratings.forEach(function(rating) {
+            let stars = rating.stars;
+            let user = rating.user_id;
+            let place = rating.place;
+            let newRating = new Rating(stars, user, place);
+            return newRating;
+        })
+        Rating.getRatingsForCurrentUser();
+        currentRatings.forEach(function(rating){
+            if (document.getElementById(`${rating.place}`)) {
+                let div = document.getElementById(`${rating.place}`)
+                let stars = div.childNodes[0].childNodes[0];
+                stars.style.width = `${(rating.stars * 20)}%`
+            }
+        })
     })
 }
 
-function postRating(rating) {
+function postRating(stars, place) {
     fetch(baseURL + 'ratings', {
         method: 'POST',
         headers: {
@@ -28,15 +42,23 @@ function postRating(rating) {
             'Accept': 'application/json'
         },
         body: JSON.stringify({
-            'stars': `${rating.stars}`,
-            'user_id': `${currentUser.id}`
+            'stars': `${stars}`,
+            'user_id': `${currentUser.id}`,
+            'place': `${place}`
         })
     })
     .then(resp => resp.json())
     .then(obj => {
-        if (obj.error == undefined) {
+        if (obj.place == ["has already been taken"]) {
+            alert("This place has already been rated by you")
+        }
+        else if (obj.place == undefined) {
             console.log(obj);
-            debugger;
+            alert("place is undefined");
+        }
+        else if (obj.error == undefined ) {
+            console.log(obj);
+            alert("Rating posted!")
         } 
         else{
             alert(`${obj.error}`);
@@ -80,9 +102,21 @@ function loginUser(email,password) {
     })
         .then(resp => resp.json())
         .then(obj => {
-            if (obj.error == undefined) {
-                user = User.findUser(email);
-                currentUser = new User(user.id, user.email);
+            if (previousUser && allRatings != []) {
+                currentUser = User.findUser(email);
+                logoutButton();
+                Rating.getRatingsForCurrentUser();
+                currentRatings.forEach(function(rating){
+                    if (document.getElementById(`${rating.place}`)) {
+                        let div = document.getElementById(`${rating.place}`)
+                        let stars = div.childNodes[0].childNodes[0];
+                        stars.style.width = `${(rating.stars * 20)}%`
+                    }
+                })
+            }
+            else if (obj.error == undefined) {
+                currentUser = User.findUser(email);
+                previousUser = true;
                 logoutButton();
             }
             else {alert(`${obj.error} - Try Again`)}

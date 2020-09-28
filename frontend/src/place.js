@@ -10,4 +10,8 @@ class Place {
         this.img = img;
     }
 
+    static findPlaceByName(name) {
+        return (allPlaces.find(place => {place.name === name}))
+    }
+
 }

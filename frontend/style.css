@@ -3,13 +3,22 @@ header {
     margin-left: 30px;
 }
 
+h1 {
+    /* background-color: lightblue; */
+}
+
 body {
     background-color: lightgray;
 }
 
 .places-container {
-    border-left-width: 200px;
+    border-left-width: 50px;
     background-color: white;
+}
+
+#places-list {
+    margin-left: 10px;
+    padding: 20px;
 }
 
 input[type=text]{
@@ -33,6 +42,9 @@ ul {
     margin-left: 25px;
 }
 
+#location-form {
+    margin-bottom: 20px;
+}
 
 .rating-dropdown-button {
     padding: 5px;
@@ -77,7 +89,7 @@ ul {
     top: 0;
     left: 0;
     white-space: nowrap;
-    overflow: 0;
+    overflow: hidden;
     width: 0;
 }
 
