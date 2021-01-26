@@ -26,7 +26,7 @@ function getPlacesByQuery() {
         })
         getRatings();
         displayPlaces();
-
+        
     })
 }
 
@@ -41,57 +41,61 @@ function displayPlaces(){
     container.className = 'places-container'
     const ul = document.createElement('ul');
     ul.id = "places-list";
+    container.appendChild(ul)
+
+    Place.aToZ()
 
     //iterate through allPlaces and display each one and it's attributes
     allPlaces.forEach(function(obj){
-        const li = document.createElement('li');
-        li.className = 'place-li-item';
-        const div = document.createElement('div');
-        div.className = 'place-div';
-        const formDiv = document.createElement('div');
-        formDiv.className = 'rating-form-div';
-        formDiv.dataset.place = obj.name;
-        // formDiv.id = obj.name;
-        const img = document.createElement('img');
-        img.src = obj.img;
-        img.className = 'place-image';
-        const h1 = document.createElement('h1');
-        h1.innerText = obj.name;
-        const a = document.createElement('a');
-        a.className = 'phone-number';
-        a.href = `tel:${obj.phone}`;
-        a.innerHTML += '<br>';
-        a.innerText = obj.phone;
-        a.innerHTML += '<br>'
-        const a2 = document.createElement('a');
-        a2.className = 'place-url'
-        a2.href = obj.url;
-        a2.innerText = 'URL';
-        a2.innerHTML += '<br>';
-        starsDiv = document.createElement('div');
-        starsDiv.id = obj.name;
-        const starsOuter = document.createElement('div');
-        starsOuter.className = 'stars-outer';
-        const starsInner = document.createElement('div');
-        starsInner.className = 'stars-inner';
-        const ratingButton = document.createElement('button');
-        ratingButton.className = 'rating-dropdown-button';
-        ratingButton.textContent = 'Rate';
+        obj.displayPlace(ul);
+        // const li = document.createElement('li');
+        // li.className = 'place-li-item';
+        // const div = document.createElement('div');
+        // div.className = 'place-div';
+        // const formDiv = document.createElement('div');
+        // formDiv.className = 'rating-form-div';
+        // formDiv.dataset.place = obj.name;
+        // // formDiv.id = obj.name;
+        // const img = document.createElement('img');
+        // img.src = obj.img;
+        // img.className = 'place-image';
+        // const h1 = document.createElement('h1');
+        // h1.innerText = obj.name;
+        // const a = document.createElement('a');
+        // a.className = 'phone-number';
+        // a.href = `tel:${obj.phone}`;
+        // a.innerHTML += '<br>';
+        // a.innerText = obj.phone;
+        // a.innerHTML += '<br>'
+        // const a2 = document.createElement('a');
+        // a2.className = 'place-url'
+        // a2.href = obj.url;
+        // a2.innerText = 'URL';
+        // a2.innerHTML += '<br>';
+        // starsDiv = document.createElement('div');
+        // starsDiv.id = obj.name;
+        // const starsOuter = document.createElement('div');
+        // starsOuter.className = 'stars-outer';
+        // const starsInner = document.createElement('div');
+        // starsInner.className = 'stars-inner';
+        // const ratingButton = document.createElement('button');
+        // ratingButton.className = 'rating-dropdown-button';
+        // ratingButton.textContent = 'Rate';
 
-        //append elements
-        div.appendChild(h1);
-        div.appendChild(starsDiv);
-        starsDiv.appendChild(starsOuter);
-        starsOuter.appendChild(starsInner);
-        div.appendChild(formDiv);
-        formDiv.appendChild(ratingButton);
-        div.innerHTML += '<br>';
-        div.appendChild(a);
-        div.appendChild(a2);
-        div.appendChild(img);
-        li.appendChild(div);
-        ul.appendChild(li);
-        container.appendChild(ul);
+        // //append elements
+        // div.appendChild(h1);
+        // div.appendChild(starsDiv);
+        // starsDiv.appendChild(starsOuter);
+        // starsOuter.appendChild(starsInner);
+        // div.appendChild(formDiv);
+        // formDiv.appendChild(ratingButton);
+        // div.innerHTML += '<br>';
+        // div.appendChild(a);
+        // div.appendChild(a2);
+        // div.appendChild(img);
+        // li.appendChild(div);
+        // ul.appendChild(li);
+        // container.appendChild(ul);
 
         
     })
@@ -214,7 +218,7 @@ function logoutButton() {
     }
 
     //logged in user text
-    userText = document.createElement('h3');
+    userText = document.createElement('p');
     userText.innerText = `Logged in as ${currentUser.email}`
 
     //create logout button

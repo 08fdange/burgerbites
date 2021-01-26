@@ -1,9 +1,15 @@
+* {
+    font-family: 'Open Sans';
+}
+
 header {
     box-sizing: border-box;
     margin-left: 30px;
+    text-align: center;
 }
 
 h1 {
+    font-family: 'Roboto';
     /* background-color: lightblue; */
 }
 
@@ -14,6 +20,7 @@ body {
 .places-container {
     border-left-width: 50px;
     background-color: white;
+    text-align: center;
 }
 
 #places-list {
@@ -38,7 +45,8 @@ input[type=submit] {
 }
 
 ul {
-    list-style-image: url('media/hamburger-solid.svg');
+    /* list-style-image: url('media/hamburger-solid.svg'); */
+    list-style: none;
     margin-left: 25px;
 }
 
